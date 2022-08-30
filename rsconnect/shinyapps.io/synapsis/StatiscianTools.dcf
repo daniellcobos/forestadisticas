@@ -1,0 +1,13 @@
+name: StatiscianTools
+title: StatiscianTools
+username:
+account: synapsis
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 6872193
+bundleId: 6252430
+url: https://synapsis.shinyapps.io/StatiscianTools/
+when: 1661878663.42604
+lastSyncTime: 1661878663.42605
+asMultiple: FALSE
+asStatic: FALSE

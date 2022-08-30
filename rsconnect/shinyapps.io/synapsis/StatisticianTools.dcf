@@ -1,0 +1,12 @@
+name: cpvm_ecuador
+title: cpvm_ecuador
+username:
+account: synapsis
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 3578860
+bundleId: 4275561
+url: https://synapsis.shinyapps.io/cpvm_ecuador/
+when: 1614349722.37162
+asMultiple: FALSE
+asStatic: FALSE

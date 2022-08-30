@@ -1,0 +1,41 @@
+/*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
+@import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
+
+/* logo */
+.skin-blue .main-header .logo {
+  font-family:'Century Gothic','Futura','Didact Gothic',san-serif;
+
+}
+.content-wrapper{
+  font-family:'Century Gothic','Futura','Didact Gothic',san-serif;
+}
+.wrapper{
+  font-family:'Century Gothic','Futura','Didact Gothic',san-serif;
+}
+.shiny-input-container{
+  font-family:'Century Gothic','Futura','Didact Gothic',san-serif;
+}
+#bf1{
+  margin-bottom: 5px;
+}
+#bf2{
+  margin-bottom: 5px;
+}
+#bf3{
+  margin-bottom: 6px;
+}
+#bf4{
+  margin-bottom: 6px;
+}
+.table{
+ border: 1px solid dimgray;
+}
+td{
+  border: 1px solid dimgray !important;
+}
+th{
+  border: 1px solid dimgray !important;
+}
+h2{
+  color: steelblue;
+}

@@ -12,8 +12,12 @@ library(shinydashboard)
 
 # Define UI for application that draws a histogram
 ui <- dashboardPage(
-  dashboardHeader(title = "Synapsis"),
+
+
+  dashboardHeader(title = tags$a(href='https://synapsis-rs.com/',
+                                             tags$img(src='synlogo.png',height='30',width='150'))),
   dashboardSidebar(
+    tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "style.css")),
     width = 375,
     sidebarMenu(
       menuItem("Proportional Sampling Error for Infinite Universes", tabName = "EMPUI", icon = icon("th")),
@@ -31,6 +35,7 @@ ui <- dashboardPage(
     )
   ),
   dashboardBody(
+    tags$head(tags$link(rel = "stylesheet", type = "text/css", href = "style.css")),
     tabItems(
       # First tab content
       tabItem(tabName = "EMPUI",
@@ -62,7 +67,7 @@ ui <- dashboardPage(
                                        
                                         br(),
                                         ##put input boxes here
-                                        div(style="display: inline-block;vertical-align:top; width: 200px;",
+                                        div(style="display: inline-block;vertical-align:top; width: 200px;  padding: 1.2rem;",
                                               strong("Probability:"), 
                                             numericInput("pr3", NULL,value = 0.5, width = 70),
                                             strong("Proportional Sample:"), 
@@ -76,7 +81,7 @@ ui <- dashboardPage(
                                       
                                         br(),
                                         ##put input boxes here
-                                        div(style="display: inline-block;vertical-align:top; width: 200px;",
+                                        div(style="display: inline-block;vertical-align:top; width: 200px ;padding: 1.2rem;;",
                                             strong("Total Sample:"), 
                                             numericInput("ts3", NULL,value = 1000, width = 70),
                                             strong("Approportional Sample:"), 
@@ -91,14 +96,10 @@ ui <- dashboardPage(
                                         br(),
                                         ##put input boxes here
                                         div(style="display: inline-block;vertical-align:top; width: 200px;border: 2px solid black; padding: 1rem;",
-                                            strong("Sampling Error:"),
-                                            br(),
-                                            br(),
+                                            strong(p("Sampling Error:")),
                                             textOutput("se3"),
                                             br(),
-                                            strong("Balanced Frequency:"),
-                                            br(),
-                                            br(),
+                                            strong(p("Balanced Frequency:")),
                                             textOutput("bf1" ),
                                             br(),
                                             textOutput("bf2"),
@@ -153,14 +154,14 @@ ui <- dashboardPage(
       tabItem(tabName = "PMM",
               fluidPage(
                 fluidRow(
-                  h4("Significant Differences between Proportions of the Same Sample")
+                  h2("Significant Differences between Proportions of the Same Sample")
                   
                 ),
                 fluidRow(
                   h4("Confidence Level (One-Side)"),
                   HTML(
-                    "<table class='table table-bordered'>
-                    <thead class='thead-dark'>
+                    "<table class='table'>
+                    <thead >
                     <tr>
                     <th> 85% </th>
                     <th> 90% </th>
@@ -182,8 +183,8 @@ ui <- dashboardPage(
                 fluidRow(
                   h4("Confidence Level (Two-Sided)"),
                   HTML(
-                    "<table class='table table-bordered'>
-                    <thead class='thead-dark'>
+                    "<table class='table'>
+                    <thead >
                     <tr>
                     <th> 85% </th>
                     <th> 90% </th>
@@ -204,26 +205,28 @@ ui <- dashboardPage(
                 ),
                 fluidRow(
                   column(4,
+                         div(style="padding-top: 1.5rem",
                          numericInput("ms7","Total Sample",value =150),
                          numericInput("prp71","Proportion 1 (%)",value = 92),
-                         numericInput("prp72","Proportion 2 (%)",value = 79),
+                         numericInput("prp72","Proportion 2 (%)",value = 79)),
                          ),
                   column(4,
-                         h4("Proportion 1"),
+                         div(style="padding: 1.5rem",
+                         strong("Proportion 1:"),
                          br(),
                          span(textOutput("prp71out"),style = "font-weight: bold;font-size: 20px "),
                          br(),
-                         h4("Proportion 2"),
+                         strong("Proportion 2:"),
                          br(),
-                         span(textOutput("prp72out"),style = "font-weight: bold;font-size: 20px "),
+                         span(textOutput("prp72out"),style = "font-weight: bold;font-size: 20px ")),
                          ),
                   column(4,
                          div(style="border: 2px solid black; padding: 1rem",
-                         h4("Z-score"),
+                         strong("Z-score:"),
                          span(textOutput("z7"), style = "font-weight: bold;font-size: 20px "), br(),
-                         h4("1-side Significance"),
+                         strong("1-side Significance:"),
                          span(textOutput("z17"), style = "color:red;font-weight: bold;font-size: 20px "),br(),
-                         h4("2-sided significance"),
+                         strong("2-sided significance:"),
                          span(textOutput("z27"), style = "color:red;font-weight: bold;font-size: 20px "))
                          )
                 
@@ -234,11 +237,11 @@ ui <- dashboardPage(
       tabItem(tabName = "PMI",
               fluidPage(
                 fluidRow(
-                  h4("Significant Differences between Proportions of the Same Sample"),
+                  h2("Significant Differences between Proportions of the Same Sample"),
                   h4("Confidence Level (One-Side)"),
                   HTML(
-                    "<table class='table table-bordered'>
-                    <thead class='thead-dark'>
+                    "<table class='table'>
+                    <thead >
                     <tr>
                     <th> 85% </th>
                     <th> 90% </th>
@@ -260,8 +263,8 @@ ui <- dashboardPage(
                 fluidRow(
                   h4("Confidence Level (Two-Sided)"),
                   HTML(
-                    "<table class='table table-bordered'>
-                    <thead class='thead-dark'>
+                    "<table class='table'>
+                    <thead>
                     <tr>
                     <th> 85% </th>
                     <th> 90% </th>
@@ -282,27 +285,27 @@ ui <- dashboardPage(
                 ),
                 fluidRow(
                   column(4,
+                         div(style="padding-top: 1.5rem",
                          numericInput("ms81","Proportional Base 1",value =150),
-                         numericInput("ms82","Proportional Base 2",value =150),
                          numericInput("fr81","Frequency 1 (%)",value = 80),
-                         numericInput("fr82","Frecuency 2 2 (%)",value = 62),
+                         strong("Frequency 1:"),
+                         span(textOutput("fr81out"), style = "color:red;font-weight: bold;font-size: 20px ")),
+                         
                   ),
                   column(4,
-                         h4("Frequency 1"),
-                         br(),
-                         span(textOutput("fr81out"), style = "font-weight: bold;font-size: 20px "),
-                         br(),
-                         h4("Frequency 2"),
-                         br(),
-                         span(textOutput("fr82out"), style = "font-weight: bold;font-size: 20px "),
-                  ),
+                         div(style="padding-top: 1.5rem",
+                        numericInput("ms82","Proportional Base 2",value =150),
+                        numericInput("fr82","Frecuency 2 2 (%)",value = 62)),
+                         strong("Frequency 2:"),
+                         span(textOutput("fr82out"), style = "color:red;font-weight: bold;font-size: 20px ")),
+                  
                   column(4,
-                         div(style="border: 2px solid black; padding: 1rem",
-                         h4("Z-score"), 
+                         div(style="border: 2px solid black; padding: 0.9rem",
+                          strong("Z-score"), 
                          span(textOutput("z8"), style = "font-weight: bold;font-size: 20px "),br(),
-                         h4("1-sided significance"),
+                         strong("1-sided significance:"),
                         span(textOutput("z18"), style = "color:red;font-weight: bold;font-size: 20px "),br(),
-                        h4("2-sided significance"),
+                        strong("2-sided significance:"),
                         span(textOutput("z28"), style = "color:red;font-weight: bold;font-size: 20px "))
                   )
                   
@@ -312,16 +315,16 @@ ui <- dashboardPage(
       ),
       tabItem(tabName = "DD",
               fluidPage(
-                h4("Significant Differences Between Two Distributions."),
+                h2("Significant Differences Between Two Distributions."),
                 p("By using the chi-square test for the degree of coincidence, it is possible to establish to what extent the distribution of a sample coincides with its theoretical distribution."),
                 p("If the X2 value is greater than those on the table, the difference can be significant leaving only the percentage of probabilities to chance: 5% or 95%."),
                 HTML(
-                  "<table class='table table-bordered'>
-                    <thead class='thead-dark'>
+                  "<table class='table'>
+                    <thead>
                     <tr>
                     <th> Degrees of Freedom </th>
                     <th> X2 max value at 5% </th>
-                    <th> X2 max value at 10% </th>
+                    <th> X2 max value at 95% </th>
                     
                     </tr>
                     </thead>
@@ -355,28 +358,29 @@ ui <- dashboardPage(
                     </table>"
                 ),
                 fluidRow(
+                  
                   column(1,
                          div(style="display: inline-block;vertical-align:top;",
-                         h5("Results by Distribution"),br(),
-                         h5("1"),br(),
-                         h5("2"),br(),
-                         h5("3"),
+                         h5("Results by Distribution",style = "margin-bottom:22px"),
+                         p("1",style = "margin-bottom:30px"),
+                         p("2",style = "margin-bottom:30px"),
+                         p("3"),
                          )),
-                  column(1,
-                        
+                  column(2,
+                        div(
                          h5("Sample Frequency"),br(),
                          numericInput("sf121",NULL,value=10),
                          numericInput("sf122",NULL,value=30),
                          numericInput("sf123",NULL,value=60),
-                         ),
+                         ),style="border-left: solid 1px DimGray"),
                   column(1,
                          div(style="display: inline-block;vertical-align:top;",
-                        h5("ID Sample for Comparison"),br(),
-                         textOutput("imc1211"),br(),
-                         textOutput("imc1212"),br(),
+                        h5("ID Sample for Comparison",style = "margin-bottom:22px"),
+                         div(textOutput("imc1211"),style = "margin-bottom:30px"),
+                         div(textOutput("imc1212"),style = "margin-bottom:30px"),
                          textOutput("imc1213")),
                   ),
-                  column(1,
+                  column(2,style="border-left: solid 1px DimGray",
                          h5("Patron Sample Frequency"),br(),
                          numericInput("psf1211",NULL,value=10),
                          numericInput("psf1212",NULL,value=10),
@@ -384,12 +388,12 @@ ui <- dashboardPage(
                   ),
                   column(1,
                          div(style="display: inline-block;vertical-align:top;",
-                         h5("ID Sample for Comparison"),br(),
-                         textOutput("imc1221"),br(),
-                         textOutput("imc1222"),br(),
+                         h5("ID Sample for Comparison",style = "margin-bottom:22px"),
+                         div(textOutput("imc1221"),style = "margin-bottom:30px"),
+                             div(textOutput("imc1222"),style = "margin-bottom:30px"),
                          textOutput("imc1223")),
                   ),
-                  column(1,
+                  column(2,style="border-left: solid 1px DimGray",
                          h5("Patron Sample Frequency"),br(),
                          numericInput("psf1221",NULL,value=20),
                          numericInput("psf1222",NULL,value=10),
@@ -397,16 +401,16 @@ ui <- dashboardPage(
                   ),
                   column(1,
                          div(style="display: inline-block;vertical-align:top;",
-                         h5("ID Sample for Comparison"),br(),
-                         textOutput("imc1231"),br(),
-                         textOutput("imc1232"),br(),
+                         h5("ID Sample for Comparison",style = "margin-bottom:22px"),
+                         div(textOutput("imc1231"),style = "margin-bottom:30px"),
+                             div(textOutput("imc1232"),style = "margin-bottom:30px"),
                          textOutput("imc1233")),
                   ),
-                  column(2,
+                  column(1,style="border-left: solid 1px DimGray",
                          div(style="display: inline-block;vertical-align:top;",
-                         h5("Total Sample by Distribution"),br(),
-                         textOutput("ts121"),br(),
-                         textOutput("ts122"),br(),
+                         h5("Total Sample by Distribution",style = "margin-bottom:22px"),
+                         div(textOutput("ts121"),style = "margin-bottom:30px"),
+                             div(textOutput("ts122"),style = "margin-bottom:30px"),
                          textOutput("ts123")),
                   ),
                   br(),
@@ -431,14 +435,14 @@ ui <- dashboardPage(
       tabItem(tabName = "DMMD",
               fluidPage(
                 fluidRow(
-                  h4("Significant Differences Between Two Dependent Sample Means.")
+                  h2("Significant Differences Between Two Dependent Sample Means.")
                   
                 ),
                 fluidRow(
                   h4("Confidence Level (One-Side)"),
                   HTML(
-                    "<table class='table table-bordered'>
-                    <thead class='thead-dark'>
+                    "<table class='table '>
+                    <thead'>
                     <tr>
                     <th> 85% </th>
                     <th> 90% </th>
@@ -460,8 +464,8 @@ ui <- dashboardPage(
                 fluidRow(
                   h4("Confidence Level (Two-Sided)"),
                   HTML(
-                    "<table class='table table-bordered'>
-                    <thead class='thead-dark'>
+                    "<table class='table'>
+                    <thead>
                     <tr>
                     <th> 85% </th>
                     <th> 90% </th>
@@ -482,11 +486,12 @@ ui <- dashboardPage(
                 ),
                 fluidRow(
                   column(4,
+                         div(
                          numericInput("b10","Base",value =100),
                          numericInput("mn101","Mean 1",value =4.8),
                          numericInput("mn102","Mean 2",value =3.2),
                          numericInput("dv101","Std.Dev 1",value =1.5),
-                         numericInput("dv102","Std.Dev 2",value =1),
+                         numericInput("dv102","Std.Dev 2",value =1)),style="padding-top: 1.5rem",
                          ),
                   column(8,
                          div(style="border: 2px solid black; padding: 1rem",
@@ -504,14 +509,14 @@ ui <- dashboardPage(
       ),
       tabItem(tabName = "DMMI",
               fluidPage( fluidRow(
-                h4("Significant Differences Between Two Independent Sample Means.")
+                h2("Significant Differences Between Two Independent Sample Means.")
                 
               ),
               fluidRow(
                 h4("Confidence Level (One-Side)"),
                 HTML(
-                  "<table class='table table-bordered'>
-                    <thead class='thead-dark'>
+                  "<table class='table'>
+                    <thead>
                     <tr>
                     <th> 85% </th>
                     <th> 90% </th>
@@ -533,8 +538,8 @@ ui <- dashboardPage(
               fluidRow(
                 h4("Confidence Level (Two-Sided)"),
                 HTML(
-                  "<table class='table table-bordered'>
-                    <thead class='thead-dark'>
+                  "<table class='table' >
+                    <thead>
                     <tr>
                     <th> 85% </th>
                     <th> 90% </th>
@@ -555,14 +560,16 @@ ui <- dashboardPage(
               ),
               fluidRow(
                 column(4,
+                       div(
                        numericInput("b111","Base 1",value =384),
                        numericInput("mn111","Mean 1",value =4),
-                       numericInput("dv111","Std.Dev 1",value =1.6),
+                       numericInput("dv111","Std.Dev 1",value =1.6),style="padding-top: 1.5rem"),
                 ),
                 column(4,
+                       div(
                        numericInput("b112","Base 2",value =384),
                        numericInput("mn112","Mean 2",value =4.4),
-                       numericInput("dv112","Std.Dev 2",value =1.6),
+                       numericInput("dv112","Std.Dev 2",value =1.6),style="padding-top: 1.5rem"),
                 ),
                 column(4,
                        div(style="border: 2px solid black; padding: 1rem",
